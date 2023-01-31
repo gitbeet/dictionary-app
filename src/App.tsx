@@ -7,7 +7,8 @@ import DarkMode from "./components/DarkMode";
 
 function App() {
   const [searchTerm, setSearchTerm] = useState("");
-  const [wordData, setWordData] = useState<any>();
+  const [wordData, setWordData] = useState<any>([]);
+  const [message, setMessage] = useState<string>("Please enter a word");
 
   const searchWord = async (e: any) => {
     e.preventDefault();
@@ -18,8 +19,10 @@ function App() {
       const res = await jsonRes.json();
       setWordData(res);
       console.log(res);
-    } catch (error) {
+      setMessage(res.title);
+    } catch (error: any) {
       console.log(error);
+      setMessage(error);
     }
   };
 
@@ -37,7 +40,11 @@ function App() {
         </div>
       </header>
       <SearchBar searchWord={searchWord} setSearchTerm={setSearchTerm} />
-      {wordData && <WordSection wordData={wordData} />}
+      {!wordData.length ? (
+        <h1>{message}</h1>
+      ) : (
+        <WordSection wordData={wordData} />
+      )}
     </div>
   );
 }
