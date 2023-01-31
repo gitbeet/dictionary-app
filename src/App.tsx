@@ -1,34 +1,45 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import './App.css'
+import { useState } from "react";
+import "./App.css";
+import WordSection from "./components/WordSection";
+import { FiBookOpen } from "react-icons/fi";
+import SearchBar from "./components/SearchBar";
+import DarkMode from "./components/DarkMode";
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [searchTerm, setSearchTerm] = useState("");
+  const [wordData, setWordData] = useState<any>();
+
+  const searchWord = async (e: any) => {
+    e.preventDefault();
+    try {
+      const jsonRes = await fetch(
+        `https://api.dictionaryapi.dev/api/v2/entries/en/${searchTerm}`
+      );
+      const res = await jsonRes.json();
+      setWordData(res);
+      console.log(res);
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   return (
-    <div className="App">
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src="/vite.svg" className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://reactjs.org" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+    <div className="w-full space-y-8">
+      <header className="flex justify-between items-center">
+        <FiBookOpen className="w-8 h-8" />
+        <div className="flex space-x-4">
+          <select>
+            <option>Serif</option>
+            <option>Sans-Serif</option>
+            <option>Monospace</option>
+          </select>
+          <DarkMode />
+        </div>
+      </header>
+      <SearchBar searchWord={searchWord} setSearchTerm={setSearchTerm} />
+      {wordData && <WordSection wordData={wordData} />}
     </div>
-  )
+  );
 }
 
-export default App
+export default App;
