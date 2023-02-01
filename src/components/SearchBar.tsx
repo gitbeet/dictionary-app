@@ -1,11 +1,13 @@
 import { useState } from "react";
 import { FiSearch } from "react-icons/fi";
+import { useDarkMode } from "../context/darkModeContext";
 
 interface Props {
   searchWord: (e: any, term: string) => Promise<void>;
 }
 
 const SearchBar = ({ searchWord }: Props) => {
+  const { darkMode } = useDarkMode();
   const [searchTerm, setSearchTerm] = useState("");
 
   return (
@@ -13,7 +15,9 @@ const SearchBar = ({ searchWord }: Props) => {
       <input
         onChange={(e) => setSearchTerm(e.target.value)}
         type="text"
-        className=" bg-gray-100 text-lg rounded-2xl w-full h-12 p-4 font-semibold text-gray-800 focus:outline-none focus:border-2 focus:border-purple-600"
+        className={`${
+          darkMode ? "bg-gray-900 text-gray-100" : "bg-gray-100 text-gray-800"
+        }  text-lg rounded-2xl w-full h-12 p-4 font-semibold  focus:outline-none focus:border-2 focus:border-purple-600`}
       />
       <button
         type="submit"

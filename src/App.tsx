@@ -5,8 +5,10 @@ import { FiBookOpen } from "react-icons/fi";
 import SearchBar from "./components/SearchBar";
 import DarkMode from "./components/DarkMode";
 import SelectMenu from "./components/SelectMenu";
+import { useDarkMode } from "./context/darkModeContext";
 
 function App() {
+  const { darkMode } = useDarkMode();
   const [wordData, setWordData] = useState<any>([]);
   const [message, setMessage] = useState<string>("Please enter a word");
   const [font, setFont] = useState({
@@ -30,10 +32,22 @@ function App() {
     }
   };
 
+  const body = document.body;
+  body.style.backgroundColor = darkMode ? "#0e0e0f" : "white";
+
   return (
-    <div style={{ fontFamily: font.value }} className="w-full space-y-12">
+    <div
+      style={{ fontFamily: font.value }}
+      className={`${
+        darkMode ? "text-gray-200" : "text-gray-900"
+      } w-full space-y-12`}
+    >
       <header className="flex justify-between items-center">
-        <FiBookOpen className="w-8 h-8 text-gray-800" />
+        <FiBookOpen
+          className={` ${
+            darkMode ? "text-purple-600" : "text-gray-600"
+          } w-8 h-8 text-gray-800`}
+        />
         <div className="flex space-x-8">
           <SelectMenu setFont={setFont} font={font} />
           <DarkMode />

@@ -1,20 +1,35 @@
+import { useDarkMode } from "../context/darkModeContext";
+
 interface Props {
   meaning: any;
   searchWord: (e: any, term: string) => Promise<void>;
 }
 
 const MeaningSection = ({ meaning, searchWord }: Props) => {
+  const { darkMode } = useDarkMode();
   const { partOfSpeech, definitions, synonyms } = meaning;
   return (
     <div className="flex flex-col items-start space-y-8 pb-12 border-b border-gray-300">
-      <h2 className="text-lg font-semibold text-gray-800">{partOfSpeech}</h2>
+      <h2
+        className={` ${
+          darkMode ? "text-gray-200" : "text-gray-800"
+        } text-lg font-semibold `}
+      >
+        {partOfSpeech}
+      </h2>
       <div className="text-left space-y-4">
-        <h2 className=" text-lg text-gray-500">Meaning</h2>
+        <h2
+          className={`${darkMode ? "text-gray-300" : "text-gray-500"} text-lg `}
+        >
+          Meaning
+        </h2>
         <ul className=" list-disc space-y-4 ">
           {definitions.map((definition: any, index: number) => (
             <li
               key={index}
-              className="text-gray-600 marker:text-purple-800 pl-4"
+              className={`  ${
+                darkMode ? "text-gray-500" : "text-gray-600"
+              }  marker:text-purple-800 pl-4`}
             >
               {definition.definition}
             </li>

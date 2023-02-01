@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { FaChevronDown } from "react-icons/fa";
+import { useDarkMode } from "../context/darkModeContext";
 
 const SelectMenu = ({
   setFont,
@@ -13,6 +14,7 @@ const SelectMenu = ({
   >;
   font: { value: string; label: string };
 }) => {
+  const { darkMode } = useDarkMode();
   const [open, setOpen] = useState(false);
   const options = [
     { value: "Roboto, sans-serif", label: "Sans-serif" },
@@ -35,10 +37,12 @@ const SelectMenu = ({
         </select> */}
         <div className="relative cursor-pointer">
           <div
-            className="relative space-x-4 bg-white"
+            className={`${
+              darkMode ? "text-gray-400" : "text-gray-800"
+            } relative space-x-4 `}
             onClick={() => setOpen((prev) => !prev)}
           >
-            <div className="pr-4">{font.label}</div>
+            <div className="pr-4 font-bold">{font.label}</div>
             <div className="absolute left-full top-1/2 -translate-y-1/2 -translate-x-full">
               <FaChevronDown
                 className={`${
@@ -50,12 +54,17 @@ const SelectMenu = ({
 
           <div
             onClick={() => setOpen(false)}
-            className={`${
-              open ? "" : "scale-y-0"
+            className={`${open ? "" : "scale-y-0"} ${
+              darkMode ? "bg-gray-900" : ""
             } absolute bg-white origin-top transition-transform space-y-4 p-4 pl-2 -left-2 shadow-lg text-left w-max`}
           >
             {options.map((option) => (
-              <div onClick={() => setFont(option)}>{option.label}</div>
+              <div
+                className="font-semibold text-md"
+                onClick={() => setFont(option)}
+              >
+                {option.label}
+              </div>
             ))}
           </div>
         </div>
