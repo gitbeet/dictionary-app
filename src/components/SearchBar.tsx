@@ -1,13 +1,15 @@
+import { useState } from "react";
 import { FiSearch } from "react-icons/fi";
 
 interface Props {
-  searchWord: (e: any) => Promise<void>;
-  setSearchTerm: React.Dispatch<React.SetStateAction<string>>;
+  searchWord: (e: any, term: string) => Promise<void>;
 }
 
-const SearchBar = ({ searchWord, setSearchTerm }: Props) => {
+const SearchBar = ({ searchWord }: Props) => {
+  const [searchTerm, setSearchTerm] = useState("");
+
   return (
-    <form onSubmit={searchWord} className="relative">
+    <form onSubmit={(e) => searchWord(e, searchTerm)} className="relative">
       <input
         onChange={(e) => setSearchTerm(e.target.value)}
         type="text"
