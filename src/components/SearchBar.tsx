@@ -17,7 +17,7 @@ const SearchBar = ({ searchWord }: Props) => {
       />
       <button
         type="submit"
-        className="absolute left-[90%]   top-1/2 -translate-y-1/2"
+        className="absolute right-4 md:right-6   top-1/2 -translate-y-1/2"
       >
         <FiSearch className="w-6 h-6 text-purple-600" />
       </button>

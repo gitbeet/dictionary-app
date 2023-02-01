@@ -4,10 +4,15 @@ import WordSection from "./components/WordSection";
 import { FiBookOpen } from "react-icons/fi";
 import SearchBar from "./components/SearchBar";
 import DarkMode from "./components/DarkMode";
+import SelectMenu from "./components/SelectMenu";
 
 function App() {
   const [wordData, setWordData] = useState<any>([]);
   const [message, setMessage] = useState<string>("Please enter a word");
+  const [font, setFont] = useState({
+    value: "Roboto, sans-serif",
+    label: "Sans-serif",
+  });
 
   const searchWord = async (e: any, term: string) => {
     e.preventDefault();
@@ -26,15 +31,11 @@ function App() {
   };
 
   return (
-    <div className="w-full space-y-8">
+    <div style={{ fontFamily: font.value }} className="w-full space-y-12">
       <header className="flex justify-between items-center">
         <FiBookOpen className="w-8 h-8 text-gray-800" />
-        <div className="flex space-x-4">
-          <select>
-            <option>Serif</option>
-            <option>Sans-Serif</option>
-            <option>Monospace</option>
-          </select>
+        <div className="flex space-x-8">
+          <SelectMenu setFont={setFont} font={font} />
           <DarkMode />
         </div>
       </header>
