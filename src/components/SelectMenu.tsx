@@ -24,17 +24,6 @@ const SelectMenu = ({
   return (
     <div>
       <div className="z-20 relative">
-        {/* <select
-          className="bg-gray-200 p-2 pr-8 appearance-none"
-          onClick={() => setOpen((prev) => !prev)}
-          onChange={(e) => {
-            setFont(e.target.value);
-          }}
-        >
-          <option value="Roboto, sans-serif">Sans-Serif</option>
-          <option value="Roboto Serif, serif">Serif</option>
-          <option value="Roboto Mono, monospace">Monospace</option>
-        </select> */}
         <div className="relative cursor-pointer">
           <div
             className={`${

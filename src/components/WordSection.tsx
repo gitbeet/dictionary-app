@@ -2,9 +2,10 @@ import MeaningSection from "./MeaningSection";
 import { FaPlay } from "react-icons/fa";
 import { FiExternalLink } from "react-icons/fi";
 import { useDarkMode } from "../context/darkModeContext";
+import { MeaningInterface, WordDataInterface } from "../models";
 
 interface Props {
-  wordData: any;
+  wordData: WordDataInterface[];
   searchWord: (e: any, term: string) => Promise<void>;
 }
 
@@ -52,7 +53,7 @@ const WordSection = ({ wordData, searchWord }: Props) => {
         )}
       </section>
       <div className="space-y-12">
-        {meanings.map((meaning: any, index: number) => (
+        {meanings.map((meaning: MeaningInterface, index: number) => (
           <MeaningSection
             key={index}
             meaning={meaning}

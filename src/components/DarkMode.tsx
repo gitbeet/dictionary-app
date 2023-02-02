@@ -1,6 +1,6 @@
 import { useDarkMode } from "../context/darkModeContext";
 import { BsSunFill } from "react-icons/bs";
-import { FaMoon, FaSun } from "react-icons/fa";
+import { FaMoon } from "react-icons/fa";
 import "../css/DarkMode.css";
 const DarkMode = () => {
   const { darkMode, toggleDarkMode } = useDarkMode();

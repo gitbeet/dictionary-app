@@ -1,7 +1,8 @@
 import { useDarkMode } from "../context/darkModeContext";
+import { DefinitionInterface, MeaningInterface } from "../models";
 
 interface Props {
-  meaning: any;
+  meaning: MeaningInterface;
   searchWord: (e: any, term: string) => Promise<void>;
 }
 
@@ -28,7 +29,7 @@ const MeaningSection = ({ meaning, searchWord }: Props) => {
           Meaning
         </h2>
         <ul className=" list-disc space-y-4 ">
-          {definitions.map((definition: any, index: number) => (
+          {definitions.map((definition: DefinitionInterface, index: number) => (
             <li
               key={index}
               className={`  ${

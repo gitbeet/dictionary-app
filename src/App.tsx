@@ -6,10 +6,11 @@ import SearchBar from "./components/SearchBar";
 import DarkMode from "./components/DarkMode";
 import SelectMenu from "./components/SelectMenu";
 import { useDarkMode } from "./context/darkModeContext";
+import { WordDataInterface } from "./models";
 
 function App() {
   const { darkMode } = useDarkMode();
-  const [wordData, setWordData] = useState<any>([]);
+  const [wordData, setWordData] = useState<WordDataInterface[] | null>(null);
   const [message, setMessage] = useState<string>("Please enter a word");
   const [font, setFont] = useState({
     value: "Roboto, sans-serif",
@@ -54,7 +55,7 @@ function App() {
         </div>
       </header>
       <SearchBar searchWord={searchWord} />
-      {!wordData.length ? (
+      {!wordData?.length ? (
         <h1>{message}</h1>
       ) : (
         <WordSection wordData={wordData} searchWord={searchWord} />
