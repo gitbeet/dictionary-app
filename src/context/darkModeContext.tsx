@@ -6,7 +6,7 @@ interface AppContextInterface {
 }
 
 const darkModeContext = createContext<AppContextInterface | null>(null);
-
+const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
 export function useDarkMode() {
   const context = useContext(darkModeContext);
   if (!context) throw new Error("Dark mode context was not found");
@@ -14,7 +14,7 @@ export function useDarkMode() {
 }
 
 const DarkModeProvider: React.FC<PropsWithChildren> = ({ children }) => {
-  const [darkMode, setDarkMode] = useState(false);
+  const [darkMode, setDarkMode] = useState(prefersDark);
 
   function toggleDarkMode() {
     setDarkMode((prev) => !prev);
