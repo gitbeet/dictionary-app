@@ -62,7 +62,7 @@ const WordSection = ({ wordData, searchWord }: Props) => {
       </div>
       <section className="text-left space-y-2">
         <p className="text-gray-400">Source</p>
-        <div className="flex items-end space-x-2">
+        <div className="flex items-end space-x-2 ">
           <a
             href={sourceUrls}
             target="_blank"

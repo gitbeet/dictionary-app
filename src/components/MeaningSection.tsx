@@ -9,7 +9,11 @@ const MeaningSection = ({ meaning, searchWord }: Props) => {
   const { darkMode } = useDarkMode();
   const { partOfSpeech, definitions, synonyms } = meaning;
   return (
-    <div className="flex flex-col items-start space-y-8 pb-12 border-b border-gray-300">
+    <div
+      className={`flex flex-col items-start space-y-8 pb-12 border-b ${
+        darkMode ? "border-gray-800" : "border-gray-300"
+      }`}
+    >
       <h2
         className={` ${
           darkMode ? "text-gray-200" : "text-gray-800"
