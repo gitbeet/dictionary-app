@@ -16,13 +16,13 @@ const WordSection = ({ wordData, searchWord }: Props) => {
   const wordAudio = new Audio(audio);
   console.log(audio);
   return (
-    <main className="space-y-12">
+    <main className="space-y-12 md:pt-8">
       <section className="flex justify-between items-end">
         <div className="flex flex-col items-start space-y-2">
           <h1
             className={`${
               darkMode ? "text-gray-200" : "text-gray-800"
-            } text-3xl font-bold `}
+            } text-4xl md:text-5xl font-bold `}
           >
             {word}
           </h1>
@@ -39,9 +39,7 @@ const WordSection = ({ wordData, searchWord }: Props) => {
           <button
             onClick={() => wordAudio.play()}
             className={`${
-              darkMode
-                ? "bg-purple-500 text-purple-900"
-                : "bg-purple-300 text-purple-600"
+              darkMode ? "text-white bg-purple-900" : "bg-purple-600 text-white"
             } w-12 h-12  rounded-full p-4`}
           >
             <FaPlay />

@@ -41,7 +41,7 @@ function App() {
       style={{ fontFamily: font.value }}
       className={`
       ${darkMode ? "text-gray-200" : "text-gray-900"} 
-      w-full space-y-12`}
+      mx-auto w-[95%] md:w-[90%] lg:w-[80%] space-y-12`}
     >
       <header className="flex justify-between items-center">
         <FiBookOpen
@@ -49,7 +49,7 @@ function App() {
             darkMode ? "text-purple-600" : "text-gray-800"
           } w-8 h-8`}
         />
-        <div className="flex space-x-8">
+        <div className="flex space-x-12">
           <SelectMenu setFont={setFont} font={font} />
           <DarkMode />
         </div>

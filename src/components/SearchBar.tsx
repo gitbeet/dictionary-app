@@ -16,12 +16,12 @@ const SearchBar = ({ searchWord }: Props) => {
         onChange={(e) => setSearchTerm(e.target.value)}
         type="text"
         className={`${
-          darkMode ? "bg-gray-900 text-gray-100" : "bg-gray-100 text-gray-800"
-        }  text-lg rounded-2xl w-full h-12 p-4 font-semibold  focus:outline-none focus:border-2 focus:border-purple-600`}
+          darkMode ? "bg-gray-900 text-gray-100" : "bg-gray-200 text-gray-800"
+        }  text-lg rounded-2xl w-full h-12 px-6 font-semibold  focus:outline-none focus:border-2 focus:border-purple-600`}
       />
       <button
         type="submit"
-        className="absolute right-4 md:right-6   top-1/2 -translate-y-1/2"
+        className="absolute right-4   top-1/2 -translate-y-1/2"
       >
         <FiSearch className="w-6 h-6 text-purple-600" />
       </button>
