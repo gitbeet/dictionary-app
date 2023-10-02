@@ -1,8 +1,9 @@
 import MeaningSection from "./MeaningSection";
-import { FaPlay } from "react-icons/fa";
+import { FaPause, FaPlay } from "react-icons/fa";
 import { FiExternalLink } from "react-icons/fi";
 import { useDarkMode } from "../context/darkModeContext";
 import { MeaningInterface, WordDataInterface } from "../models";
+import { useState } from "react";
 
 interface Props {
   wordData: WordDataInterface[];
@@ -10,10 +11,19 @@ interface Props {
 }
 
 const WordSection = ({ wordData, searchWord }: Props) => {
+  const [audioPlaying, setAudioPlaying] = useState(false);
   const { darkMode } = useDarkMode();
   const { word, phonetic, phonetics, meanings, sourceUrls } = wordData[0];
   const audio = phonetics?.find?.((el: any) => el.audio !== "")?.audio;
   const wordAudio = new Audio(audio);
+
+  wordAudio.addEventListener("play", () => {
+    setAudioPlaying(true);
+  });
+  wordAudio.addEventListener("ended", () => {
+    setAudioPlaying(false);
+  });
+
   console.log(audio);
   return (
     <main className="space-y-12 md:pt-8">
@@ -40,9 +50,9 @@ const WordSection = ({ wordData, searchWord }: Props) => {
             onClick={() => wordAudio.play()}
             className={`${
               darkMode ? "text-white bg-purple-900" : "bg-purple-600 text-white"
-            } w-12 h-12  rounded-full p-4`}
+            } w-12 h-12  rounded-full p-4 ${audioPlaying ? "opacity-75" : ""}`}
           >
-            <FaPlay />
+            {audioPlaying ? <FaPause /> : <FaPlay />}
           </button>
         ) : (
           <p className={darkMode ? "text-gray-400" : "text-gray-600"}>

@@ -1,7 +1,13 @@
-import { createContext, PropsWithChildren, useContext, useState } from "react";
+import {
+  createContext,
+  PropsWithChildren,
+  useContext,
+  useState,
+  useEffect,
+} from "react";
 
 interface AppContextInterface {
-  darkMode: boolean;
+  darkMode: boolean | undefined;
   toggleDarkMode: () => void;
 }
 
@@ -14,7 +20,19 @@ export function useDarkMode() {
 }
 
 const DarkModeProvider: React.FC<PropsWithChildren> = ({ children }) => {
-  const [darkMode, setDarkMode] = useState(prefersDark);
+  const [darkMode, setDarkMode] = useState<boolean | undefined>(undefined);
+
+  useEffect(() => {
+    const darkModeLs = localStorage.getItem("theme");
+    const darkModeValue =
+      darkModeLs === "dark" ? true : darkModeLs === "light" ? false : undefined;
+    setDarkMode(darkModeValue ?? prefersDark);
+  }, []);
+
+  useEffect(() => {
+    if (typeof darkMode === "undefined") return;
+    localStorage.setItem("theme", darkMode ? "dark" : "light");
+  }, [darkMode]);
 
   function toggleDarkMode() {
     setDarkMode((prev) => !prev);

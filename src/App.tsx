@@ -11,7 +11,7 @@ import { WordDataInterface } from "./models";
 function App() {
   const { darkMode } = useDarkMode();
   const [wordData, setWordData] = useState<WordDataInterface[] | null>(null);
-  const [message, setMessage] = useState<string>("Please enter a word");
+  const [message, setMessage] = useState<string>("");
   const [font, setFont] = useState({
     value: "Roboto, sans-serif",
     label: "Sans-serif",
@@ -19,6 +19,11 @@ function App() {
 
   const searchWord = async (e: any, term: string) => {
     e.preventDefault();
+    setMessage("");
+    if (term.length < 1) {
+      setMessage("Please enter a word");
+      return;
+    }
     try {
       const jsonRes = await fetch(
         `https://api.dictionaryapi.dev/api/v2/entries/en/${term}`
@@ -50,15 +55,20 @@ function App() {
           } w-8 h-8`}
         />
         <div className="flex space-x-12">
-          <SelectMenu setFont={setFont} font={font} />
+          <SelectMenu
+            setFont={setFont}
+            font={font}
+          />
           <DarkMode />
         </div>
       </header>
       <SearchBar searchWord={searchWord} />
-      {!wordData?.length ? (
-        <h1>{message}</h1>
-      ) : (
-        <WordSection wordData={wordData} searchWord={searchWord} />
+      {message && <h1>{message}</h1>}
+      {wordData && !message && (
+        <WordSection
+          wordData={wordData}
+          searchWord={searchWord}
+        />
       )}
     </div>
   );

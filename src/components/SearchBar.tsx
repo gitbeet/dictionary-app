@@ -11,8 +11,12 @@ const SearchBar = ({ searchWord }: Props) => {
   const [searchTerm, setSearchTerm] = useState("");
 
   return (
-    <form onSubmit={(e) => searchWord(e, searchTerm)} className="relative">
+    <form
+      onSubmit={(e) => searchWord(e, searchTerm)}
+      className="relative"
+    >
       <input
+        placeholder="apple, human, car..."
         onChange={(e) => setSearchTerm(e.target.value)}
         type="text"
         className={`${
