@@ -21,7 +21,7 @@ const SearchBar = ({ searchWord }: Props) => {
         type="text"
         className={`${
           darkMode ? "bg-gray-900 text-gray-100" : "bg-gray-200 text-gray-800"
-        }  text-lg rounded-2xl w-full h-12 px-6 font-semibold  focus:outline-none focus:border-2 focus:border-purple-600`}
+        }  text-lg rounded-2xl w-full h-12 px-6 font-semibold`}
       />
       <button
         type="submit"
