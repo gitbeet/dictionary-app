@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { FaChevronDown } from "react-icons/fa";
 import { useDarkMode } from "../context/darkModeContext";
+import { FocusTrap } from "focus-trap-react";
 
 const SelectMenu = ({
   setFont,
@@ -23,45 +24,58 @@ const SelectMenu = ({
   ];
   return (
     <div>
-      <div className="z-20 relative">
-        <div className="relative cursor-pointer">
-          <div
+      <FocusTrap
+        active={open}
+        focusTrapOptions={{
+          escapeDeactivates: true,
+          allowOutsideClick: true,
+          onDeactivate: () => setOpen(false),
+        }}
+      >
+        <div className="relative cursor-pointer z-20 w-36">
+          <button
+            aria-label="Select font"
             className={`${
-              darkMode ? "text-gray-400" : "text-gray-800"
-            } relative space-x-4 `}
+              darkMode ? "text-gray-400 bg-gray-900" : "text-gray-800 bg-white"
+            } gap-3 p-2 flex items-center w-full justify-between`}
             onClick={() => setOpen((prev) => !prev)}
           >
-            <div className="pr-4 font-bold">{font.label}</div>
-            <div className="absolute left-full top-1/2 -translate-y-1/2 -translate-x-full">
-              <FaChevronDown
-                className={`${
-                  open ? "-rotate-180" : ""
-                } transition-all duration-200`}
-              />
-            </div>
-          </div>
+            <div className="font-bold shrink-0">{font.label}</div>
+            <FaChevronDown
+              className={`${
+                open ? "-rotate-180" : ""
+              } transition-all duration-200 shrink-0`}
+            />
+          </button>
 
           <div
+            role="menu"
             onClick={() => setOpen(false)}
             className={`${open ? "" : "scale-y-0"} ${
               darkMode ? "bg-gray-900" : ""
-            } absolute bg-white origin-top transition-transform space-y-4 p-4 pl-2 -left-2 shadow-lg text-left w-max`}
+            } absolute top-full  bg-white origin-top transition-transform shadow-lg text-left w-full rounded-b-sm`}
           >
-            {options.map((option) => (
-              <div
-                className="font-semibold text-md"
-                onClick={() => setFont(option)}
-              >
-                {option.label}
-              </div>
-            ))}
+            {options
+              .filter((o) => o.value !== font.value)
+              .map((option) => (
+                <button
+                  key={option.value}
+                  aria-label={`Switch font to ${option.label.toLowerCase()}`}
+                  tabIndex={open ? 0 : -1}
+                  onClick={() => setFont(option)}
+                  className="font-semibold w-full text-left block text-md hover:bg-gray-800 transition-colors py-2 pr-4 pl-2"
+                >
+                  {option.label}
+                </button>
+              ))}
           </div>
         </div>
-      </div>
+      </FocusTrap>
+
       {open ? (
         <div
           onClick={() => setOpen(false)}
-          className="top-0 bottom-0 left-0 right-0 fixed z-10"
+          className="top-0 bottom-0 left-0 right-0 fixed z-10 backdrop-blur bg-gray-950/10"
         ></div>
       ) : null}
     </div>

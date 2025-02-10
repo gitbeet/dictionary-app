@@ -1,14 +1,15 @@
 import { useDarkMode } from "../context/darkModeContext";
 import { BsSunFill } from "react-icons/bs";
 import { FaMoon } from "react-icons/fa";
-import "../css/DarkMode.css";
 const DarkMode = () => {
   const { darkMode, toggleDarkMode } = useDarkMode();
   return (
-    <div
+    <button
+      role="switch"
+      aria-label={`Switch to ${darkMode ? "light" : "dark"} mode`}
       onClick={toggleDarkMode}
       className={`${
-        darkMode ? "bg-purple-600" : "bg-gray-500"
+        darkMode ? "bg-purple-600" : "bg-gray-300"
       } relative px-[2px]  rounded-full w-[44px] h-6 transition-all`}
     >
       {/* TODO regular css for animation */}
@@ -21,7 +22,7 @@ const DarkMode = () => {
       >
         {darkMode ? <FaMoon /> : <BsSunFill />}
       </div>
-    </div>
+    </button>
   );
 };
 

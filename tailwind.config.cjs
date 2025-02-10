@@ -7,7 +7,11 @@ module.exports = {
       serif: ["ui-serif", "Comic-sans"],
       mono: ["ui-monospace", "SFMono-Regular"],
     },
-    extend: {},
+    extend: {
+      screens: {
+        "xs": "360px",
+      },
+    },
   },
   plugins: [],
 };

@@ -47,6 +47,7 @@ const WordSection = ({ wordData, searchWord }: Props) => {
 
         {audio !== undefined ? (
           <button
+            aria-label="Play word audio"
             onClick={() => wordAudio.play()}
             className={`${
               darkMode ? "text-white bg-purple-900" : "bg-purple-600 text-white"

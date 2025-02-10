@@ -52,9 +52,9 @@ function App() {
         <FiBookOpen
           className={`${
             darkMode ? "text-purple-600" : "text-gray-800"
-          } w-8 h-8`}
+          } w-8 h-8 shrink-0`}
         />
-        <div className="flex space-x-12">
+        <div className="flex gap-6 sm:gap-12 items-center">
           <SelectMenu
             setFont={setFont}
             font={font}
