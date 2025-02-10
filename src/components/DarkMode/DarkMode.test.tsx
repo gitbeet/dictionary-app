@@ -1,18 +1,17 @@
-import { render, screen } from "@testing-library/react";
+import { render, screen } from "../../test-utils/testing-library-utils";
 import { userEvent } from "@testing-library/user-event";
 import App from "../../App";
-import DarkModeProvider from "../../context/darkModeContext";
 import { expect, test } from "vitest";
 
 test("the button is rendered correctly", () => {
-  render(<App />, { wrapper: DarkModeProvider });
+  render(<App />);
   const themeSwitchButton = screen.getByRole("switch", { name: /switch to/i });
   expect(themeSwitchButton).toBeInTheDocument();
 });
 
 test("button styles are correct when the button is clicked", async () => {
   const user = userEvent.setup();
-  render(<App />, { wrapper: DarkModeProvider });
+  render(<App />);
   const themeSwitchButton = screen.getByRole("switch", { name: /switch to/i });
   expect(themeSwitchButton).toHaveClass(/bg-gray-300/i);
   await user.click(themeSwitchButton);
@@ -23,7 +22,7 @@ test("button styles are correct when the button is clicked", async () => {
 
 test("aria-label updates when the button is clicked", async () => {
   const user = userEvent.setup();
-  render(<App />, { wrapper: DarkModeProvider });
+  render(<App />);
   const themeSwitchButton = screen.getByRole("switch", { name: /switch to/i });
   expect(themeSwitchButton).toHaveAttribute(
     "aria-label",
@@ -43,7 +42,7 @@ test("aria-label updates when the button is clicked", async () => {
 
 test("keyboard navigaton works correctly", async () => {
   const user = userEvent.setup();
-  render(<App />, { wrapper: DarkModeProvider });
+  render(<App />);
   const themeSwitchButton = screen.getByRole("switch", { name: /switch to/i });
   themeSwitchButton.focus();
   expect(themeSwitchButton).toHaveFocus();

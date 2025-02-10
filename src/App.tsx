@@ -2,7 +2,7 @@ import { useState } from "react";
 import "./App.css";
 import WordSection from "./components/WordSection";
 import { FiBookOpen } from "react-icons/fi";
-import SearchBar from "./components/SearchBar";
+import SearchBar from "./components/SearchBar/SearchBar";
 import DarkMode from "./components/DarkMode/DarkMode";
 import SelectMenu from "./components/SelectMenu";
 import { useDarkMode } from "./context/darkModeContext";
@@ -63,7 +63,7 @@ function App() {
         </div>
       </header>
       <SearchBar searchWord={searchWord} />
-      {message && <h1>{message}</h1>}
+      {message && <h1 id="message">{message}</h1>}
       {wordData && !message && (
         <WordSection
           wordData={wordData}
