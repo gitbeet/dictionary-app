@@ -37,9 +37,6 @@ function App() {
     }
   };
 
-  const body = document.body;
-  body.style.backgroundColor = darkMode ? "#0e0e0f" : "white";
-
   return (
     <div className={`${darkMode ? "dark" : ""}`}>
       <div
