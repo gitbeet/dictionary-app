@@ -25,7 +25,7 @@ const SearchBar = ({ searchWord }: Props) => {
         placeholder="apple, human, car..."
         onChange={(e) => setSearchTerm(e.target.value)}
         type="text"
-        className="dark:bg-gray-900 dark:text-gray-100 bg-gray-200 text-gray-800 text-lg rounded-2xl w-full h-12 px-6 font-semibold placeholder:text-gray-400 dark:placeholder:text-gray-600"
+        className="dark:bg-slate-900 dark:text-slate-100 bg-slate-200 text-slate-800 text-lg rounded-2xl w-full h-12 px-6 font-semibold placeholder:text-slate-400 dark:placeholder:text-slate-600"
       />
       <button
         aria-label="Search"

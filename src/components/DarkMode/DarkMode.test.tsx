@@ -13,7 +13,7 @@ test("button styles are correct when the button is clicked", async () => {
   const user = userEvent.setup();
   render(<App />);
   const themeSwitchButton = screen.getByRole("switch", { name: /switch to/i });
-  expect(themeSwitchButton).toHaveClass(/bg-gray-300/i);
+  expect(themeSwitchButton).toHaveClass(/bg-slate-300/i);
   await user.click(themeSwitchButton);
   expect(themeSwitchButton).toHaveClass(/bg-purple-600/i);
   // clicking the button again so I get the correct state in the next test

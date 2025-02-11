@@ -27,7 +27,7 @@ const WordSection = ({ wordData, searchWord }: Props) => {
     <main className="space-y-12 md:pt-8">
       <section className="flex justify-between items-end">
         <div className="flex flex-col items-start space-y-2">
-          <h1 className="dark:text-gray-200 text-gray-800 text-4xl md:text-5xl font-bold">
+          <h1 className="dark:text-slate-200 text-slate-800 text-4xl md:text-5xl font-bold">
             {word}
           </h1>
           <p className="text-purple-800 text-xl">{phonetic}</p>
@@ -43,7 +43,7 @@ const WordSection = ({ wordData, searchWord }: Props) => {
             {audioPlaying ? <FaPause /> : <FaPlay />}
           </button>
         ) : (
-          <p className="dark:text-gray-400 text-gray-600">
+          <p className="dark:text-slate-400 text-slate-600">
             No audio available.
           </p>
         )}
@@ -58,17 +58,17 @@ const WordSection = ({ wordData, searchWord }: Props) => {
         ))}
       </div>
       <section className="text-left space-y-2">
-        <p className="text-gray-400">Source</p>
+        <p className="text-slate-400">Source</p>
         <div className="flex items-end space-x-2 ">
           <a
             href={sourceUrls}
             target="_blank"
-            className="text-gray-600 underline"
+            className="text-slate-600 underline"
           >
             {sourceUrls[0]}
           </a>
           {/* align bottom of link text and icon */}
-          <FiExternalLink className="mb-[2px] text-gray-600" />
+          <FiExternalLink className="mb-[2px] text-slate-600" />
         </div>
       </section>
     </main>

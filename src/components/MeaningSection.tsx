@@ -10,18 +10,18 @@ const MeaningSection = ({ meaning, searchWord }: Props) => {
   return (
     <div
       className="flex flex-col items-start space-y-8 pb-12 border-b 
-       dark:border-gray-800 border-gray-300"
+       dark:border-slate-800 border-slate-300"
     >
-      <h2 className="dark:text-gray-200 text-gray-800 text-lg font-semibold">
+      <h2 className="dark:text-slate-200 text-slate-800 text-lg font-semibold">
         {partOfSpeech}
       </h2>
       <div className="text-left space-y-4">
-        <h2 className="dark:text-gray-300 text-gray-500 text-lg">Meaning</h2>
+        <h2 className="dark:text-slate-300 text-slate-500 text-lg">Meaning</h2>
         <ul className=" list-disc space-y-4 ">
           {definitions.map((definition: DefinitionInterface, index: number) => (
             <li
               key={index}
-              className="dark:text-gray-500 text-gray-600 marker:text-purple-800 pl-4"
+              className="dark:text-slate-500 text-slate-600 marker:text-purple-800 pl-4"
             >
               {definition.definition}
             </li>
@@ -29,7 +29,7 @@ const MeaningSection = ({ meaning, searchWord }: Props) => {
         </ul>
         {synonyms.length > 0 && (
           <div className="flex space-x-4">
-            <h3 className="text-gray-600">Synonyms</h3>
+            <h3 className="text-slate-600">Synonyms</h3>
             <div className=" font-semibold tex-lg space-x-4">
               {synonyms.map((synonym: string, index: number) => (
                 <span
