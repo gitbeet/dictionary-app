@@ -1,6 +1,5 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { FaChevronDown } from "react-icons/fa";
-import { useDarkMode } from "../context/darkModeContext";
 import { FocusTrap } from "focus-trap-react";
 
 const SelectMenu = ({
@@ -15,7 +14,6 @@ const SelectMenu = ({
   >;
   font: { value: string; label: string };
 }) => {
-  const { darkMode } = useDarkMode();
   const [open, setOpen] = useState(false);
   const options = [
     { value: "Roboto, sans-serif", label: "Sans-serif" },

@@ -1,13 +1,11 @@
 import { useState } from "react";
 import { FiSearch } from "react-icons/fi";
-import { useDarkMode } from "../../context/darkModeContext";
 
 interface Props {
   searchWord: (e: any, term: string) => Promise<void>;
 }
 
 const SearchBar = ({ searchWord }: Props) => {
-  const { darkMode } = useDarkMode();
   const [searchTerm, setSearchTerm] = useState("");
 
   return (

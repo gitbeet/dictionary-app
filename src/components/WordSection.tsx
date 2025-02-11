@@ -1,7 +1,6 @@
 import MeaningSection from "./MeaningSection";
 import { FaPause, FaPlay } from "react-icons/fa";
 import { FiExternalLink } from "react-icons/fi";
-import { useDarkMode } from "../context/darkModeContext";
 import { MeaningInterface, WordDataInterface } from "../models";
 import { useState } from "react";
 
@@ -12,7 +11,6 @@ interface Props {
 
 const WordSection = ({ wordData, searchWord }: Props) => {
   const [audioPlaying, setAudioPlaying] = useState(false);
-  const { darkMode } = useDarkMode();
   const { word, phonetic, phonetics, meanings, sourceUrls } = wordData[0];
   const audio = phonetics?.find?.((el: any) => el.audio !== "")?.audio;
   const wordAudio = new Audio(audio);
@@ -29,34 +27,23 @@ const WordSection = ({ wordData, searchWord }: Props) => {
     <main className="space-y-12 md:pt-8">
       <section className="flex justify-between items-end">
         <div className="flex flex-col items-start space-y-2">
-          <h1
-            className={`${
-              darkMode ? "text-gray-200" : "text-gray-800"
-            } text-4xl md:text-5xl font-bold `}
-          >
+          <h1 className="dark:text-gray-200 text-gray-800 text-4xl md:text-5xl font-bold">
             {word}
           </h1>
-          <p
-            className={`${
-              darkMode ? "text-purple-600" : "text-purple-800"
-            } text-xl `}
-          >
-            {phonetic}
-          </p>
+          <p className="text-purple-800 text-xl">{phonetic}</p>
         </div>
 
         {audio !== undefined ? (
           <button
+            disabled={audioPlaying}
             aria-label="Play word audio"
             onClick={() => wordAudio.play()}
-            className={`${
-              darkMode ? "text-white bg-purple-900" : "bg-purple-600 text-white"
-            } w-12 h-12  rounded-full p-4 ${audioPlaying ? "opacity-75" : ""}`}
+            className="dark:text-white dark:bg-purple-900 bg-purple-600 text-white w-12 h-12  rounded-full p-4 disabled:opacity-50"
           >
             {audioPlaying ? <FaPause /> : <FaPlay />}
           </button>
         ) : (
-          <p className={darkMode ? "text-gray-400" : "text-gray-600"}>
+          <p className="dark:text-gray-400 text-gray-600">
             No audio available.
           </p>
         )}
