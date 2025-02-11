@@ -32,12 +32,10 @@ const SelectMenu = ({
           onDeactivate: () => setOpen(false),
         }}
       >
-        <div className="relative cursor-pointer z-20 w-36">
+        <div className="relative cursor-pointer z-20 w-36 dark:text-gray-400 text-gray-800 dark:bg-gray-900  bg-white">
           <button
             aria-label="Select font"
-            className={`${
-              darkMode ? "text-gray-400 bg-gray-900" : "text-gray-800 bg-white"
-            } gap-3 p-2 flex items-center w-full justify-between`}
+            className="gap-3 p-2 flex items-center w-full justify-between"
             onClick={() => setOpen((prev) => !prev)}
           >
             <div className="font-bold shrink-0">{font.label}</div>
@@ -47,13 +45,12 @@ const SelectMenu = ({
               } transition-all duration-200 shrink-0`}
             />
           </button>
-
           <div
             role="menu"
             onClick={() => setOpen(false)}
-            className={`${open ? "" : "scale-y-0"} ${
-              darkMode ? "bg-gray-900" : ""
-            } absolute top-full  bg-white origin-top transition-transform shadow-lg text-left w-full rounded-b-sm`}
+            className={`${
+              open ? "" : "scale-y-0"
+            }  absolute top-full dark:bg-gray-900 bg-white origin-top transition-transform shadow-lg text-left w-full rounded-b-sm`}
           >
             {options
               .filter((o) => o.value !== font.value)

@@ -1,5 +1,4 @@
 import { useState } from "react";
-import "./App.css";
 import WordSection from "./components/WordSection";
 import { FiBookOpen } from "react-icons/fi";
 import SearchBar from "./components/SearchBar/SearchBar";
@@ -42,34 +41,30 @@ function App() {
   body.style.backgroundColor = darkMode ? "#0e0e0f" : "white";
 
   return (
-    <div
-      style={{ fontFamily: font.value }}
-      className={`
-      ${darkMode ? "text-gray-200" : "text-gray-900"} 
-      mx-auto w-[95%] md:w-[90%] lg:w-[80%] space-y-12`}
-    >
-      <header className="flex justify-between items-center">
-        <FiBookOpen
-          className={`${
-            darkMode ? "text-purple-600" : "text-gray-800"
-          } w-8 h-8 shrink-0`}
-        />
-        <div className="flex gap-6 sm:gap-12 items-center">
-          <SelectMenu
-            setFont={setFont}
-            font={font}
+    <div className={`${darkMode ? "dark" : ""}`}>
+      <div
+        style={{ fontFamily: font.value }}
+        className="mx-auto w-[95%] md:w-[90%] lg:w-[80%] space-y-12 p-4 md:p-8"
+      >
+        <header className="flex justify-between items-center">
+          <FiBookOpen className="w-8 h-8 shrink-0 text-gray-800 dark:text-purple-600" />
+          <div className="flex gap-6 sm:gap-12 items-center">
+            <SelectMenu
+              setFont={setFont}
+              font={font}
+            />
+            <DarkMode />
+          </div>
+        </header>
+        <SearchBar searchWord={searchWord} />
+        {message && <h1 id="message">{message}</h1>}
+        {wordData && !message && (
+          <WordSection
+            wordData={wordData}
+            searchWord={searchWord}
           />
-          <DarkMode />
-        </div>
-      </header>
-      <SearchBar searchWord={searchWord} />
-      {message && <h1 id="message">{message}</h1>}
-      {wordData && !message && (
-        <WordSection
-          wordData={wordData}
-          searchWord={searchWord}
-        />
-      )}
+        )}
+      </div>
     </div>
   );
 }

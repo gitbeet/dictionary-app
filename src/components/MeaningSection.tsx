@@ -1,4 +1,3 @@
-import { useDarkMode } from "../context/darkModeContext";
 import { DefinitionInterface, MeaningInterface } from "../models";
 
 interface Props {
@@ -7,34 +6,22 @@ interface Props {
 }
 
 const MeaningSection = ({ meaning, searchWord }: Props) => {
-  const { darkMode } = useDarkMode();
   const { partOfSpeech, definitions, synonyms } = meaning;
   return (
     <div
-      className={`flex flex-col items-start space-y-8 pb-12 border-b ${
-        darkMode ? "border-gray-800" : "border-gray-300"
-      }`}
+      className="flex flex-col items-start space-y-8 pb-12 border-b 
+       dark:border-gray-800 border-gray-300"
     >
-      <h2
-        className={` ${
-          darkMode ? "text-gray-200" : "text-gray-800"
-        } text-lg font-semibold `}
-      >
+      <h2 className="dark:text-gray-200 text-gray-800 text-lg font-semibold">
         {partOfSpeech}
       </h2>
       <div className="text-left space-y-4">
-        <h2
-          className={`${darkMode ? "text-gray-300" : "text-gray-500"} text-lg `}
-        >
-          Meaning
-        </h2>
+        <h2 className="dark:text-gray-300 text-gray-500 text-lg">Meaning</h2>
         <ul className=" list-disc space-y-4 ">
           {definitions.map((definition: DefinitionInterface, index: number) => (
             <li
               key={index}
-              className={`  ${
-                darkMode ? "text-gray-500" : "text-gray-600"
-              }  marker:text-purple-800 pl-4`}
+              className="dark:text-gray-500 text-gray-600 marker:text-purple-800 pl-4"
             >
               {definition.definition}
             </li>
