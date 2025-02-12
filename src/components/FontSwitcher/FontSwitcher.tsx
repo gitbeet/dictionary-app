@@ -1,9 +1,9 @@
 import { useState } from "react";
 import { FaChevronDown } from "react-icons/fa";
 import { FocusTrap } from "focus-trap-react";
-import { options } from "../utilities";
+import { options } from "../../utilities";
 
-const SelectMenu = ({
+const FontSwitcher = ({
   setFont,
   font,
 }: {
@@ -23,6 +23,9 @@ const SelectMenu = ({
           escapeDeactivates: true,
           allowOutsideClick: true,
           onDeactivate: () => setOpen(false),
+          tabbableOptions: {
+            displayCheck: import.meta.env.TEST ? "none" : undefined,
+          },
         }}
       >
         <div
@@ -76,4 +79,4 @@ const SelectMenu = ({
   );
 };
 
-export default SelectMenu;
+export default FontSwitcher;

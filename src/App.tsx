@@ -3,7 +3,7 @@ import WordSection from "./components/WordSection";
 import { FiBookOpen } from "react-icons/fi";
 import SearchBar from "./components/SearchBar/SearchBar";
 import DarkMode from "./components/DarkMode/DarkMode";
-import SelectMenu from "./components/SelectMenu";
+import FontSwitcher from "./components/FontSwitcher/FontSwitcher";
 import { useDarkMode } from "./context/darkModeContext";
 import { WordDataInterface } from "./models";
 import { options } from "./utilities";
@@ -63,7 +63,7 @@ function App() {
         <header className="flex justify-between items-center">
           <FiBookOpen className="w-8 h-8 shrink-0 text-slate-800 dark:text-purple-600" />
           <div className="flex gap-6 sm:gap-12 items-center">
-            <SelectMenu
+            <FontSwitcher
               setFont={setFont}
               font={font}
             />
