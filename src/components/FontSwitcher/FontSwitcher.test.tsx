@@ -12,7 +12,7 @@ test("font switcher is in the document", () => {
 });
 
 test("font switches correctly when one of the options is clicked", async () => {
-  // mock an empty localstorage
+  // mock an empty local storage
   vi.spyOn(Storage.prototype, "getItem").mockReturnValue(null);
 
   const user = userEvent.setup();
@@ -59,7 +59,7 @@ test("font switches correctly when one of the options is clicked", async () => {
 });
 
 test("working keyboard navigation", async () => {
-  // mock an empty localstorage
+  // mock an empty local storage
   vi.spyOn(Storage.prototype, "getItem").mockReturnValue(null);
 
   const user = userEvent.setup();
