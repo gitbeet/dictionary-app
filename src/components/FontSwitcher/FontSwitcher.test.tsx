@@ -98,4 +98,8 @@ test("working keyboard navigation", async () => {
   // assert that the options are not focusable
   expect(serifOption).toHaveAttribute("tabIndex", "-1");
   expect(monoOption).toHaveAttribute("tabIndex", "-1");
+  // press tab again
+  await user.tab();
+  // assert that the button is no longer focused
+  expect(fontSwitcherButton).not.toHaveFocus();
 });
