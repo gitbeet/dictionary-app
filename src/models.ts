@@ -16,7 +16,7 @@ export interface WordDataInterface {
   phonetic: string;
   phonetics: PhoneticsInterface[];
   meanings: MeaningInterface[];
-  sourceUrls: string;
+  sourceUrls: string[];
 }
 
 export type Font =

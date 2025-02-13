@@ -1,14 +1,15 @@
-import { DefinitionInterface, MeaningInterface } from "../models";
+import { DefinitionInterface, MeaningInterface } from "../../models";
 
 interface Props {
   meaning: MeaningInterface;
   searchWord: (e: any, term: string) => Promise<void>;
 }
 
-const MeaningSection = ({ meaning, searchWord }: Props) => {
+const Meaning = ({ meaning, searchWord }: Props) => {
   const { partOfSpeech, definitions, synonyms } = meaning;
   return (
-    <div
+    <article
+      data-testid="meaning__container"
       className="flex flex-col items-start space-y-8 pb-12 border-b 
        dark:border-slate-800 border-slate-300"
     >
@@ -44,8 +45,8 @@ const MeaningSection = ({ meaning, searchWord }: Props) => {
           </div>
         )}
       </div>
-    </div>
+    </article>
   );
 };
 
-export default MeaningSection;
+export default Meaning;

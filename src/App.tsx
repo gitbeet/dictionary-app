@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import WordSection from "./components/WordSection";
+import WordInfo from "./components/WordInfo/WordInfo";
 import { FiBookOpen } from "react-icons/fi";
 import SearchBar from "./components/SearchBar/SearchBar";
 import DarkMode from "./components/DarkMode/DarkMode";
@@ -80,7 +80,7 @@ function App() {
           </p>
         )}
         {wordData && !message && (
-          <WordSection
+          <WordInfo
             wordData={wordData}
             searchWord={searchWord}
           />

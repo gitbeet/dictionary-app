@@ -1,7 +1,7 @@
-import MeaningSection from "./MeaningSection";
+import Meaning from "./Meaning";
 import { FaPause, FaPlay } from "react-icons/fa";
 import { FiExternalLink } from "react-icons/fi";
-import { MeaningInterface, WordDataInterface } from "../models";
+import { MeaningInterface, WordDataInterface } from "../../models";
 import { useState } from "react";
 
 interface Props {
@@ -9,7 +9,7 @@ interface Props {
   searchWord: (e: any, term: string) => Promise<void>;
 }
 
-const WordSection = ({ wordData, searchWord }: Props) => {
+const WordInfo = ({ wordData, searchWord }: Props) => {
   const [audioPlaying, setAudioPlaying] = useState(false);
   const { word, phonetic, phonetics, meanings, sourceUrls } = wordData[0];
   const audio = phonetics?.find?.((el: any) => el.audio !== "")?.audio;
@@ -22,19 +22,32 @@ const WordSection = ({ wordData, searchWord }: Props) => {
     setAudioPlaying(false);
   });
 
-  console.log(audio);
+  console.log(wordData);
+
   return (
-    <main className="space-y-12 md:pt-8">
+    <div
+      data-testid="word-info__container"
+      className="space-y-12 md:pt-8"
+    >
       <section className="flex justify-between items-end">
         <div className="flex flex-col items-start space-y-2">
-          <h1 className="dark:text-slate-200 text-slate-800 text-4xl md:text-5xl font-bold">
+          <h1
+            data-testid="word-info__word"
+            className="dark:text-slate-200 text-slate-800 text-4xl md:text-5xl font-bold"
+          >
             {word}
           </h1>
-          <p className="text-purple-800 text-xl">{phonetic}</p>
+          <p
+            data-testid="word-info__phonetic"
+            className="text-purple-800 text-xl"
+          >
+            {phonetic}
+          </p>
         </div>
 
         {audio !== undefined ? (
           <button
+            data-testid="word-info__audio"
             disabled={audioPlaying}
             aria-label="Play word audio"
             onClick={() => wordAudio.play()}
@@ -48,31 +61,32 @@ const WordSection = ({ wordData, searchWord }: Props) => {
           </p>
         )}
       </section>
-      <div className="space-y-12">
+      <section className="space-y-12">
         {meanings.map((meaning: MeaningInterface, index: number) => (
-          <MeaningSection
+          <Meaning
             key={index}
             meaning={meaning}
             searchWord={searchWord}
           />
         ))}
-      </div>
-      <section className="text-left space-y-2">
+      </section>
+      <article className="text-left space-y-2">
         <p className="text-slate-400">Source</p>
         <div className="flex items-end space-x-2 ">
           <a
-            href={sourceUrls}
+            data-testid="word-info__source-url"
+            href={sourceUrls[0]}
             target="_blank"
             className="text-slate-600 underline"
           >
-            {sourceUrls[0]}
+            {sourceUrls}
           </a>
           {/* align bottom of link text and icon */}
           <FiExternalLink className="mb-[2px] text-slate-600" />
         </div>
-      </section>
-    </main>
+      </article>
+    </div>
   );
 };
 
-export default WordSection;
+export default WordInfo;
