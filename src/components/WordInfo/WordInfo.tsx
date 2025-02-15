@@ -17,7 +17,7 @@ const WordInfo = ({ wordData, searchWord, message }: Props) => {
     return (
       <p
         className="text-center text-red-500 text-xl"
-        id="message"
+        data-testid="message"
       >
         {message}
       </p>
@@ -27,7 +27,7 @@ const WordInfo = ({ wordData, searchWord, message }: Props) => {
     return (
       <p
         className="text-center text-red-500 text-xl"
-        id="message"
+        data-testid="message"
       >
         An error has occured.Please try again later.
       </p>

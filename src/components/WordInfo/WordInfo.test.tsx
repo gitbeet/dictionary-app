@@ -85,7 +85,7 @@ test("word info is not present initially when the page loads", () => {
   expect(wordInfoContainer).not.toBeInTheDocument();
 });
 
-test("correct word info is displayed when looking for an existing word", () => {
+test("correct word info is displayed", () => {
   render(
     <WordInfo
       wordData={mockWordData}
@@ -108,4 +108,18 @@ test("correct word info is displayed when looking for an existing word", () => {
 
   const sourceUrl = screen.getByTestId("word-info__source-url");
   expect(sourceUrl).toHaveTextContent("https://en.wiktionary.org/wiki/apple");
+});
+
+test("message is displayed correctly and has the right styling", () => {
+  render(
+    <WordInfo
+      wordData={null}
+      searchWord={async () => void 0}
+      message="Test message"
+    />
+  );
+
+  const message = screen.getByTestId("message");
+  expect(message).toHaveTextContent("Test message");
+  expect(message).toHaveClass("text-red-500");
 });
