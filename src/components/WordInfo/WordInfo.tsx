@@ -13,6 +13,8 @@ interface Props {
 const WordInfo = ({ wordData, searchWord, message }: Props) => {
   const [audioPlaying, setAudioPlaying] = useState(false);
 
+  if (!message && !wordData) return null;
+
   if (message)
     return (
       <p
