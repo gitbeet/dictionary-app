@@ -110,6 +110,18 @@ test("correct word info is displayed", () => {
   expect(sourceUrl).toHaveTextContent("https://en.wiktionary.org/wiki/apple");
 });
 
+test("message is not present when the prop is an empty string", () => {
+  render(
+    <WordInfo
+      wordData={null}
+      searchWord={async () => void 0}
+      message=""
+    />
+  );
+  const message = screen.queryByTestId("message");
+  expect(message).not.toBeInTheDocument();
+});
+
 test("message is displayed correctly and has the right styling", () => {
   render(
     <WordInfo
