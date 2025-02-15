@@ -41,10 +41,8 @@ function App() {
       );
       const res = await jsonRes.json();
       setWordData(res);
-      console.log(res);
       setMessage(res.title);
     } catch (error: any) {
-      console.log(error);
       setMessage(error);
     }
   };
@@ -54,38 +52,33 @@ function App() {
   const body = document.body;
   body.style.backgroundColor = darkMode ? "#08090d" : "white";
 
+  const header = (
+    <header className="flex justify-between items-center">
+      <FiBookOpen className="w-8 h-8 shrink-0 text-slate-800 dark:text-purple-600" />
+      <div className="flex gap-6 sm:gap-12 items-center">
+        <FontSwitcher
+          setFont={setFont}
+          font={font}
+        />
+        <DarkMode />
+      </div>
+    </header>
+  );
+
   return (
     <div className={`${darkMode ? "dark" : ""} `}>
-      <div
+      <main
         style={{ fontFamily: currentFont }}
         className="mx-auto w-[95%] md:w-[90%] lg:w-[80%] space-y-12 p-4 md:p-8"
       >
-        <header className="flex justify-between items-center">
-          <FiBookOpen className="w-8 h-8 shrink-0 text-slate-800 dark:text-purple-600" />
-          <div className="flex gap-6 sm:gap-12 items-center">
-            <FontSwitcher
-              setFont={setFont}
-              font={font}
-            />
-            <DarkMode />
-          </div>
-        </header>
+        {header}
         <SearchBar searchWord={searchWord} />
-        {message && (
-          <p
-            className="text-center text-red-500 text-xl"
-            id="message"
-          >
-            {message}
-          </p>
-        )}
-        {wordData && !message && (
-          <WordInfo
-            wordData={wordData}
-            searchWord={searchWord}
-          />
-        )}
-      </div>
+        <WordInfo
+          message={message}
+          wordData={wordData}
+          searchWord={searchWord}
+        />
+      </main>
     </div>
   );
 }

@@ -90,6 +90,7 @@ test("correct word info is displayed when looking for an existing word", () => {
     <WordInfo
       wordData={mockWordData}
       searchWord={async () => void 0}
+      message=""
     />
   );
 

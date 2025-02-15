@@ -5,24 +5,44 @@ import { MeaningInterface, WordDataInterface } from "../../models";
 import { useState } from "react";
 
 interface Props {
-  wordData: WordDataInterface[];
+  wordData: WordDataInterface[] | null;
   searchWord: (e: any, term: string) => Promise<void>;
+  message: string;
 }
 
-const WordInfo = ({ wordData, searchWord }: Props) => {
+const WordInfo = ({ wordData, searchWord, message }: Props) => {
   const [audioPlaying, setAudioPlaying] = useState(false);
+
+  if (message)
+    return (
+      <p
+        className="text-center text-red-500 text-xl"
+        id="message"
+      >
+        {message}
+      </p>
+    );
+
+  if (!wordData)
+    return (
+      <p
+        className="text-center text-red-500 text-xl"
+        id="message"
+      >
+        An error has occured.Please try again later.
+      </p>
+    );
+
   const { word, phonetic, phonetics, meanings, sourceUrls } = wordData[0];
+
   const audio = phonetics?.find?.((el: any) => el.audio !== "")?.audio;
   const wordAudio = new Audio(audio);
-
   wordAudio.addEventListener("play", () => {
     setAudioPlaying(true);
   });
   wordAudio.addEventListener("ended", () => {
     setAudioPlaying(false);
   });
-
-  console.log(wordData);
 
   return (
     <div
