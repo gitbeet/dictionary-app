@@ -1,4 +1,4 @@
-import Meaning from "./Meaning";
+import Meaning from "../Meaning/Meaning";
 import { FaPause, FaPlay } from "react-icons/fa";
 import { FiExternalLink } from "react-icons/fi";
 import { MeaningInterface, WordDataInterface } from "../../models";
