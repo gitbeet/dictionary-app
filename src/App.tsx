@@ -7,11 +7,13 @@ import FontSwitcher from "./components/FontSwitcher/FontSwitcher";
 import { useDarkMode } from "./context/darkModeContext";
 import { WordDataInterface } from "./models";
 import { options } from "./utilities";
+import LoadingSpinner from "./components/loading-spinner";
 
 function App() {
   const { darkMode } = useDarkMode();
   const [wordData, setWordData] = useState<WordDataInterface[] | null>(null);
   const [message, setMessage] = useState<string>("");
+  const [loading, setLoading] = useState(false);
   const [font, setFont] = useState<"serif" | "sans" | "mono" | null>(null);
 
   useEffect(() => {
@@ -29,10 +31,12 @@ function App() {
 
   const searchWord = async (e: any, term: string) => {
     e.preventDefault();
+    setLoading(true);
     setMessage("");
     setWordData(null);
     if (term.length < 1) {
       setMessage("Please enter a word");
+      setLoading(false);
       return;
     }
     try {
@@ -44,6 +48,8 @@ function App() {
       setMessage(res.title);
     } catch (error: any) {
       setMessage(error);
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -73,6 +79,11 @@ function App() {
       >
         {header}
         <SearchBar searchWord={searchWord} />
+        {loading && (
+          <div className="grid place-content-center py-12">
+            <LoadingSpinner />
+          </div>
+        )}
         <WordInfo
           message={message}
           wordData={wordData}
